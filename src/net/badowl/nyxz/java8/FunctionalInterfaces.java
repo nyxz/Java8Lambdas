@@ -9,7 +9,53 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
+/**
+ * Functional interfaces are interfaces that have single abstract method. The lambda expression
+ * provides implementation of that abstract method.
+ * 
+ * - default methods are not considered abstract methods.
+ * 
+ * - static methods in the interface are not counted as well.
+ * 
+ * - methods that are inherited from the Object class don't count. Ex. equals() method.
+ * 
+ * You can add the annotation @FunctionalInterface (java.lang.FunctionalInterface) so the compiler
+ * will check if this is really a functional interface.
+ * 
+ * Some examples of old (before Java 8) functional interfaces:
+ * 
+ * - interface FileFilter { boolean accept(File file); }
+ * 
+ * - interface ActionListener { void actionPerformed(...); }
+ * 
+ * - interface Callable<T> { T call(); }
+ * 
+ * - interface Runnable { void run(); }
+ * 
+ * - interface Comparator { int compare(T o1, T o2); boolean equals(Object o); }
+ * 
+ * Below are the new Functional interfaces introduced in Java 8.
+ */
 public class FunctionalInterfaces {
+
+    /**
+     * Example usage of
+     */
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread1 = new Thread(() -> System.out.println("Lambdas rule!"));
+        Thread thread2 = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                System.out.println("Fuck of lambda!");
+            }
+        });
+
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
+    }
 
     /**
      * The Consumer takes a single value and returns no result.

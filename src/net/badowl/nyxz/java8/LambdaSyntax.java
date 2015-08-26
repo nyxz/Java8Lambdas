@@ -1,10 +1,11 @@
 package net.badowl.nyxz.java8;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import net.badowl.nyxz.java8.util.Print;
 
 /**
  * General syntax: (parameters) -> { lambda-body } "->" is called "lambda operator"
@@ -69,7 +70,7 @@ public class LambdaSyntax {
         list.add("carrot");
         list.add("pineapple");
 
-        printCollection(list);
+        Print.collection(list);
 
         /**
          * Type inference - we do not explicitly give the types to x and y but the compiler knows if
@@ -79,13 +80,7 @@ public class LambdaSyntax {
          */
         new MyProcessor<String>().process(list, (x, y) -> x.compareTo(y));
 
-        printCollection(list);
-    }
+        Print.collection(list);
 
-    private static void printCollection(Collection<?> collection) {
-        for (Object value : collection) {
-            System.out.println(value);
-        }
-        System.out.println();
     }
 }
