@@ -20,7 +20,7 @@ import java.util.function.UnaryOperator;
  * 
  * - Instance method of an existing object.
  */
-public class MethodReferences {
+public class MethodAndConstructorReferences {
 
     static class Randy {
 
