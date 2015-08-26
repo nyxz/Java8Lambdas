@@ -81,6 +81,5 @@ public class LambdaSyntax {
         new MyProcessor<String>().process(list, (x, y) -> x.compareTo(y));
 
         Print.collection(list);
-
     }
 }
