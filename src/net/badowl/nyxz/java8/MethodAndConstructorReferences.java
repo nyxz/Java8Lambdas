@@ -2,9 +2,12 @@ package net.badowl.nyxz.java8;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 /**
@@ -19,6 +22,9 @@ import java.util.function.UnaryOperator;
  * - Instance method of an arbitrary type.
  * 
  * - Instance method of an existing object.
+ * 
+ * 
+ * Constructor references: same as method references but for the constructor.
  */
 public class MethodAndConstructorReferences {
 
@@ -43,6 +49,7 @@ public class MethodAndConstructorReferences {
         staticMethodExample();
         instanceMethodOfArbitraryTypeExample();
         instanceMethodOfExistingObjectExample();
+        constructorReferenceExample();
 
         /* FileFilter example */
         FileFilter x = (File f) -> f.canRead();
@@ -81,5 +88,17 @@ public class MethodAndConstructorReferences {
 
         System.out.println(a.apply("instanceMethodOfExistingObject"));
         System.out.println(b.apply("instanceMethodOfExistingObject"));
+    }
+
+    public static void constructorReferenceExample() {
+        Supplier<List<String>> consumer1 = () -> new ArrayList<String>();
+        /* Same as above */
+        Supplier<List<String>> consumer2 = ArrayList<String>::new;
+
+        List<String> list1 = consumer1.get();
+        List<String> list2 = consumer2.get();
+
+        System.out.println(list1.size());
+        System.out.println(list2.size());
     }
 }
