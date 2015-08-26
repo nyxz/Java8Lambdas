@@ -1,5 +1,11 @@
 package net.badowl.nyxz.java8;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * General syntax: (parameters) -> { lambda-body } "->" is called "lambda operator"
  * 
@@ -46,4 +52,40 @@ public class LambdaSyntax {
      * 
      * }
      */
+
+    static class MyProcessor<T> {
+
+        public void process(List<T> list, Comparator<T> comparator) {
+            Collections.sort(list, comparator);
+        }
+
+    }
+
+    public static void main(String[] args) {
+        final List<String> list = new ArrayList<String>();
+        list.add("banana");
+        list.add("apple");
+        list.add("strawberry");
+        list.add("carrot");
+        list.add("pineapple");
+
+        printCollection(list);
+
+        /**
+         * Type inference - we do not explicitly give the types to x and y but the compiler knows if
+         * the Comparator is String we have to give string values to its compare method.
+         * 
+         * This is not a dynamic typing!
+         */
+        new MyProcessor<String>().process(list, (x, y) -> x.compareTo(y));
+
+        printCollection(list);
+    }
+
+    private static void printCollection(Collection<?> collection) {
+        for (Object value : collection) {
+            System.out.println(value);
+        }
+        System.out.println();
+    }
 }
